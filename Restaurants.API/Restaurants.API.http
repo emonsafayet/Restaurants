@@ -1,5 +1,4 @@
-@Restaurants.API_HostAddress = https://localhost:7018
-
+@Restaurants.API_HostAddress = 
 
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants
@@ -14,6 +13,16 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants/1
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
-
-###
+POST https://localhost:7018/api/restaurants
+Content-Type:application/json 
+{
+    "Name":"Spicy Delights",
+    "Description" : "A culinary experience like no other",
+    "Category" : "Mexican",
+    "HasDelivery":true,
+    "ContactEmail":"emonsafayet@gmail.com",
+     "ContactNumber":"0167000000",
+     "City":"Metropolis",
+     "Street":"Uttara",
+     "PostalCode" :"12-429"
+}
