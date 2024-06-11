@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories; 
@@ -6,24 +7,33 @@ using Restaurants.Domain.Repositories;
 namespace Restaurants.Application.Restaurants;
 internal class RestaurantsService(
     IRestautrantsRepository restautrantsRepository,
-    ILogger<RestaurantsService> logger
+    ILogger<RestaurantsService> logger, IMapper mapper
     ) :  IRestaurantsService
 {
+    public async Task<int> Create(CreateRestaurantDto dto)
+    {
+        logger.LogInformation("Getting all restaurants");
+        var restaurant = mapper.Map<Restaurant>(dto);
+        int id = await restautrantsRepository.Create(restaurant);
+        return id;
+    }
+
     public async Task<IEnumerable<RestaurantDto>> GetAllRestaurants()
     {
         logger.LogInformation("Getting all restaurants");
-        var restaurants = await restautrantsRepository.GetAllAsync(); ;
-        var restaurantDto = restaurants.Select(RestaurantDto.FromEntity);
+        IEnumerable<Restaurant> restaurants = await restautrantsRepository.GetAllAsync(); ;
+        IEnumerable<RestaurantDto> restaurantDtos = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
          
-        return restaurantDto!;
+        return restaurantDtos!;
     }
+     
 
     public async Task<RestaurantDto?> GetById(int id)
     {
         logger.LogInformation($"Getting by id:{id}");
 
-        var result = await restautrantsRepository.GetByIdAsync(id);
-        var restaurantDto = RestaurantDto.FromEntity(result);
+        Restaurant? restaurant = await restautrantsRepository.GetByIdAsync(id);
+        RestaurantDto restaurantDto = mapper.Map<RestaurantDto?>(restaurant);
         return restaurantDto;
     }
 }
