@@ -1,4 +1,4 @@
-@Restaurants.API_HostAddress = 
+@Restaurants.API_HostAddress = https://localhost:7018
 
 
 GET {{Restaurants.API_HostAddress}}/api/restaurants
@@ -26,3 +26,7 @@ Content-Type:application/json
      "Street":"Uttara",
      "PostalCode" :"12-429"
 }
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants/{id}
+
+###

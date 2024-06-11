@@ -1,8 +1,6 @@
-﻿using MediatR;
+﻿namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 
-namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant;
-
-public class CreateRestaurantCommand : IRequest<int>
+public class CreateRestaurantCommand /*: IRequest<int>*/
 {
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;

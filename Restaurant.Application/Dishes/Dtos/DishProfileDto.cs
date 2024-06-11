@@ -1,5 +1,5 @@
 ﻿namespace Restaurants.Application.Dishes.Dtos;
 
-public class DishProfile :Profile
+public class DishProfile /*:Profile*/
 {
 }
