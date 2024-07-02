@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
     {
         var appilcationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
-        services.AddScoped<IRestaurantsService, RestaurantsService>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(appilcationAssembly));
         services.AddAutoMapper(appilcationAssembly);
         services.AddValidatorsFromAssembly(appilcationAssembly)
             .AddFluentValidationAutoValidation(); 

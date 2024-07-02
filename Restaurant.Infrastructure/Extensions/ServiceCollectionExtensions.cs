@@ -16,6 +16,6 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<RestaurantsDbContext>(option=>option.UseSqlServer(connectionString));
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         
-        services.AddScoped<IRestautrantsRepository, RestautrantsRepository>();
+        services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
     }
 }
