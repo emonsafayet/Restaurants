@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
+using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
+using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 using System.Threading.Tasks;
@@ -15,7 +18,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
-        return Ok(restaurants);
+        return Ok(restaurants); 
     }
 
     [HttpGet("{id}")]
@@ -25,6 +28,23 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
         if (restaurant == null)
             return NotFound();
         return Ok(restaurant);
+    } 
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
+    {
+        var isDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
+        if (isDeleted)
+            return NoContent();
+        return NotFound();
+    } 
+    
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateRestaurant([FromRoute] int id,UpdateRestaurantCommand command)
+    {
+        command.Id = id;
+        await mediator.Send(command);
+
+        return NoContent();
     } 
 
     [HttpPost]

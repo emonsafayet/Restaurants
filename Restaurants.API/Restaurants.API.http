@@ -1,24 +1,24 @@
-@host = https://localhost
-@port = 7018
+# @host = https://localhost
+# @port = 7018
 
-@Restaurants.API_HostAddress = https://localhost:7018
+# @Restaurant.API_HostAddress = https://localhost:7018
 
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
 
-###
-
-GET {{Restaurants.API_HostAddress}}/api/restaurants/145
-
+GET  https://localhost:7018/api/restaurants
 
 ###
 
-DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1006
+GET https://localhost:7018/api/restaurants/13
 
 
 ###
 
-POST {{Restaurants.API_HostAddress}}/api/restaurants
+DELETE https://localhost:7018/api/restaurants/12
+
+
+###
+PATCH https://localhost:7018/api/restaurants/13
 Content-Type: application/json
 
 {
