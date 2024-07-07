@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Restaurants.Domain.Exceptions;
 using System;
 using System.Threading.Tasks;
 
@@ -12,6 +13,11 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
 		try
 		{
 			await next.Invoke(context);
+		}
+		catch(NotFoundException notFound)
+		{
+			context.Response.StatusCode = 404;
+			await context.Response.WriteAsync(notFound.Message);
 		}
 		catch (Exception ex)
 		{
