@@ -15,10 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Host.UseSerilog((context,configuration)=>
-        configuration
-          .MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
-          .MinimumLevel.Override("Microsoft.EntityFramework",LogEventLevel.Information)
-          .WriteTo.Console()
+        configuration.ReadFrom.Configuration(context.Configuration)
 );
 var app = builder.Build();
 var scope = app.Services.CreateScope();

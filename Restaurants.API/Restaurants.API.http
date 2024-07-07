@@ -18,11 +18,11 @@ DELETE https://localhost:7018/api/restaurants/12
 
 
 ###
-PATCH https://localhost:7018/api/restaurants/13
+PATCH https://localhost:7018/api/restaurants/11
 Content-Type: application/json
 
 {
-      "Name": "Tasty Tests",
+      "Name": "Tasty Tests5",
       "Description": "A cozy restaurant serving a variety of delicious dishes.",
       "Category": "Indian",
       "HasDelivery": true,
