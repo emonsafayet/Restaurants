@@ -51,3 +51,18 @@ Content-Type: application/json
 }
 
 ###
+
+POST https://localhost:7018/api/restaurants/6/dishes
+Content-Type: application/json
+
+{
+  "Name": "Spaghetti Bolognese",
+  "Description": "Classic Italian pasta dish with rich meat sauce",
+  "Price": 12.99,
+  "KiloCalories": 750
+}
+
+###
+
+GET https://localhost:7018/api/restaurants/6/dishes/3
+
