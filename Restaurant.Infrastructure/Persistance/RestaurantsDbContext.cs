@@ -3,11 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Persistance;
-internal class RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) 
-    : IdentityDbContext<User>(options)
+//internal class RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) 
+//    : IdentityDbContext<User>(options)
+//{
+public class RestaurantsDbContext : IdentityDbContext<User>
 {
-    internal DbSet<Restaurant> Restaurants { get; set; }
-    internal DbSet<Dish> Dishes { get; set; } 
+    public RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options)
+        : base(options)
+    {
+    }
+    public DbSet<Restaurant> Restaurants { get; set; }
+    public DbSet<Dish> Dishes { get; set; } 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

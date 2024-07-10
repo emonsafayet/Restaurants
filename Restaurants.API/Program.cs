@@ -4,9 +4,7 @@ using Restaurants.Infrastructure.Extensions;
 using Restaurants.Infrastructure.Seeders;
 using Restaurants.Application.Extensions;
 using Serilog;
-using Serilog.Events;
 using Microsoft.Extensions.Hosting;
-using Restaurants.API.Controllers;
 using Restaurants.API.Middlewares;
 using Microsoft.AspNetCore.Routing;
 using Restaurants.Domain.Entities;
@@ -24,11 +22,11 @@ builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Host.UseSerilog((context,configuration)=>
-        configuration.ReadFrom.Configuration(context.Configuration)
+    configuration.ReadFrom.Configuration(context.Configuration)
 );
 var app = builder.Build();
 var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 
 await seeder.Seed();
 // Configure the HTTP request pipeline.
@@ -41,7 +39,7 @@ if(app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-} 
+}
 
 app.UseHttpsRedirection();
 
