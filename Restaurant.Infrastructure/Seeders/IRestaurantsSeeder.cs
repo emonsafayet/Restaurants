@@ -1,6 +1,6 @@
 ﻿namespace Restaurants.Infrastructure.Seeders
 {
-    public interface IRestaurantSeeder
+    public interface IRestaurantsSeeder
     {
         Task Seed();
     }

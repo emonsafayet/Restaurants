@@ -26,7 +26,7 @@ builder.Host.UseSerilog((context,configuration)=>
 );
 var app = builder.Build();
 var scope = app.Services.CreateScope();
-    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantsSeeder>();
 
 await seeder.Seed();
 // Configure the HTTP request pipeline.
