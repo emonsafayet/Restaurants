@@ -6,16 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\IdentityController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Restaurant.Application\Restaurants.Application.csproj" />
     <ProjectReference Include="..\Restaurant.Infrastructure\Restaurants.Infrastructure.csproj" />
   </ItemGroup>
 
 	<ItemGroup> 
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference> 
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference> 
