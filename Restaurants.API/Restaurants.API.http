@@ -9,7 +9,7 @@ GET  https://localhost:7018/api/restaurants
 
 ###
 
-GET https://localhost:7018/api/restaurants/145
+GET https://localhost:7018/api/restaurants/1
 
 
 ###
@@ -41,7 +41,7 @@ GET https://localhost:7018/api/restaurants/1007
 ###
 
 
-PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1007
+PATCH https://localhost:7018/api/restaurants/1007
 Content-Type: application/json
 
 {
@@ -52,17 +52,60 @@ Content-Type: application/json
 
 ###
 
-POST https://localhost:7018/api/restaurants/6/dishes
+POST https://localhost:7018/api/restaurants/1/dishes
 Content-Type: application/json
 
 {
-  "Name": "Spaghetti Bolognese",
-  "Description": "Classic Italian pasta dish with rich meat sauce",
-  "Price": 12.99,
-  "KiloCalories": 750
+  "Name": "Sqpaghetti Bolognese",
+  "Description": "qClassic Italian pasta dish with rich meat sauce",
+  "Price": 12.9,
+  "KiloCalories": 75
 }
 
 ###
 
-GET https://localhost:7018/api/restaurants/6/dishes/3
+GET https://localhost:7018/api/restaurants/1/dishes/1
 
+###
+
+POST https://localhost:7018/register
+Content-Type: application/json
+
+{
+    "email": "owner21@test.com",
+    "password": "Password!1"
+}
+
+###
+
+POST https://localhost:7018/login
+Content-Type: application/json
+
+{
+    "email": "owner2@test.com",
+    "password": "Password!1"
+}
+###
+
+PATCH https://localhost:7018/api/identity/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Nationality": "French",
+  "DateOfBirth": "2010-01-01"
+}
+
+###
+
+
+POST https://localhost:7018/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "UserEmail": "owner2@test.com",
+  "RoleName": "Owner"
+}
+
+###
