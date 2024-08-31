@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Users\**" />
-    <EmbeddedResource Remove="Users\**" />
-    <None Remove="Users\**" />
+    <Compile Remove="Users\Commands\AssignUserRole\**" />
+    <Compile Remove="Users\Commands\UnassignUserRole\**" />
+    <EmbeddedResource Remove="Users\Commands\AssignUserRole\**" />
+    <EmbeddedResource Remove="Users\Commands\UnassignUserRole\**" />
+    <None Remove="Users\Commands\AssignUserRole\**" />
+    <None Remove="Users\Commands\UnassignUserRole\**" />
   </ItemGroup>
 
   <ItemGroup>

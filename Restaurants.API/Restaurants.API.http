@@ -2,15 +2,16 @@
 # @port = 7018
 
 # @Restaurant.API_HostAddress = https://localhost:7018
-
+@token=CfDJ8CoEBB73O5hJmJvBPzbk1YpV-yUyam6VkKRmEy7dGzQfPuGWIcx2gBsApVPoUnxLEW688AW2xSgCbXdfXZfMY4SrQpG46TGG92esKz-7Y7k1zViUN46iwy8dj2yVPTuQClafe3x29rG3tAQAHFLO50zCqz1unZCBilQOdC985rg0B6KAeXFBeCD3TvCZrNohuApd3hn4nnh8BCaykRGmes7fxt_jA99NIHpVQ2yy0pnIl-Q-WnojTELxe2_NHdsiC5PlkBzkCAistaMGSjSLaT9x_KbbBgHLybUEL1poduG5X8pVEH9mn-7BDXCMAS1887Lc-Ms85CUgVBtOh2nO2Q0EXpZDcVdKncV4vZ-5G7yFaR99QAY5-TdSl9lSfcZldoTjFseFwb4QlZSK38PHX1vrNOVMNidDUHpw_771wfPF6H2ozj0Bogc9kaE4qXWWhWQ13G4gYlbqKWVlVgV0Gv0xJe_ZJOgfUio1lOeggylqPuBpcfLhoKlEY8cAnOR-U86btUxPapt9E8qQQuB6nj1mgf2sN8gGVacoLsvdmx0D7mXakEVaGtp7SZtuskQi0ExYMxBePLKjAhKS3SYQKOxl4d5v7Rvq--k0_ogGqFEp9JGH4vxNz3RMLvqNEaiF2G7osHoKKtSu1UFB0luZGc3cJp-ZsRvtklEeUK0xR4g4FvBlNKyPrptDSMYrqf11LTGEInDlTvQaZaxcsNpYs90
 
 
 GET  https://localhost:7018/api/restaurants
+Authorization: Bearer {{token}}}
 
 ###
 
 GET https://localhost:7018/api/restaurants/1
-
+Authorization: Bearer {{token}}}
 
 ###
 
@@ -68,21 +69,21 @@ GET https://localhost:7018/api/restaurants/1/dishes/1
 
 ###
 
-POST https://localhost:7018/register
+POST https://localhost:7018/api/identity/register
 Content-Type: application/json
 
 {
-    "email": "owner21@test.com",
+    "email": "owner2024@test.com",
     "password": "Password!1"
 }
 
 ###
 
-POST https://localhost:7018/login
+POST https://localhost:7018/api/identity/login
 Content-Type: application/json
 
 {
-    "email": "owner2@test.com",
+    "email": "owner2024@test.com",
     "password": "Password!1"
 }
 ###

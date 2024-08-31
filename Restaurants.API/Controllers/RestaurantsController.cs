@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
@@ -8,15 +9,18 @@ using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurants.API.Controllers;
 
 [ApiController]
 [Route("api/restaurants")]
+[Authorize]
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
-    [HttpGet] 
+    [HttpGet]
+
     public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
     {
         var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -26,6 +30,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
     {
+        var userId = User.Claims.FirstOrDefault(c=>c.Type=="<id claim type>")!.Value;
         var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id)); 
         return Ok(restaurant);
     } 

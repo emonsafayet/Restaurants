@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\IdentityController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Restaurant.Application\Restaurants.Application.csproj" />
     <ProjectReference Include="..\Restaurant.Infrastructure\Restaurants.Infrastructure.csproj" />
   </ItemGroup>

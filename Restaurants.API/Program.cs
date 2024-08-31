@@ -8,51 +8,25 @@ using Microsoft.Extensions.Hosting;
 using Restaurants.API.Middlewares;
 using Microsoft.AspNetCore.Routing;
 using Restaurants.Domain.Entities;
-using Microsoft.OpenApi.Models;
+using Restaurants.API.Extensions;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference{ Type = ReferenceType.SecurityScheme,Id= "bearerAuth"}
-            },
-            []
-        }
-       
-    });
-});
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
-builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
+// Add services to the container. 
+builder.AddPresentation();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Host.UseSerilog((context,configuration)=>
-    configuration.ReadFrom.Configuration(context.Configuration)
-);
+
 var app = builder.Build();
 var scope = app.Services.CreateScope();
     var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantsSeeder>();
 
 await seeder.Seed();
 // Configure the HTTP request pipeline.
-app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<RequestTimeLoggingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseSerilogRequestLogging();
 
@@ -63,11 +37,10 @@ if(app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGroup("api/identity").MapIdentityApi<User>();
+app.MapGroup("api/identity")
+    .WithTags("Identity")
+   .MapIdentityApi<User>();
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
