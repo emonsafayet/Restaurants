@@ -73,7 +73,7 @@ POST https://localhost:7018/api/identity/register
 Content-Type: application/json
 
 {
-    "email": "owner2024@test.com",
+    "email": "user@test.com",
     "password": "Password!1"
 }
 
@@ -83,7 +83,7 @@ POST https://localhost:7018/api/identity/login
 Content-Type: application/json
 
 {
-    "email": "owner2024@test.com",
+    "email": "owner@test.com",
     "password": "Password!1"
 }
 ###
