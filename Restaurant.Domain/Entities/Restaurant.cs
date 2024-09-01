@@ -11,5 +11,10 @@
         public string? ContactNumber { get; set; }
         public Address? Address { get; set; }
         public List<Dish> Dishes { get; set; } = new();
+
+        public User Owner { get; set; } = default!;
+        public string OwnerId { get; set; } = default!;
+        public string? LogoUrl { get; set; }
+
     }
 }
