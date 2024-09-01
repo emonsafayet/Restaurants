@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Users\Commands\AssignUserRole\**" />
-    <Compile Remove="Users\Commands\UnassignUserRole\**" />
-    <EmbeddedResource Remove="Users\Commands\AssignUserRole\**" />
-    <EmbeddedResource Remove="Users\Commands\UnassignUserRole\**" />
-    <None Remove="Users\Commands\AssignUserRole\**" />
-    <None Remove="Users\Commands\UnassignUserRole\**" />
-  </ItemGroup>
-
-  <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="13.0.1" />
 	  <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 	  <PackageReference Include="MediatR" Version="12.3.0" />
